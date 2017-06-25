@@ -33,13 +33,13 @@ class App extends PureComponent {
     })
   }
 
-  deleteTodo(_id) {
+  deleteTodo = (_id) => {
     this.setState({
       todos: this.state.todos.filter(todo => todo._id != _id)
     })
   }
 
-  addTodo() {
+  addTodo = () => {
     if (this.state.title) {
       this.setState({
         todos: [...this.state.todos, {id: this.state.todos.length,title: this.state.title}],
@@ -51,13 +51,13 @@ class App extends PureComponent {
     }
 
   }
-  editTodo({_id, title}) {
+  editTodo = ({_id, title}) => {
     this.setState({active_todo_id: _id, mode: 'edit', title, error: false})
   }
-  inputChange(title) {
+  inputChange = (title) => {
     this.setState({title})
   }
-  updateTodo() {
+  updateTodo = () => {
     if (this.state.title) {
       const index = this.state.todos.findIndex(todo => todo._id == this.state.active_todo_id)
       const updatedTodo = update(this.state.todos[index], {title: {$set: this.state.title}})
@@ -73,13 +73,13 @@ class App extends PureComponent {
       <div>
         <Form mode={this.state.mode} error={this.state.error}
           title={this.state.title}
-          inputChange= {(title)=>{this.inputChange(title)}}
+          inputChange= {this.inputChange}
           active_todo_id={this.state.active_todo_id}
-          addTodo= {()=>this.addTodo()}
-          updateTodo= {()=>this.updateTodo()}/>
+          addTodo= {this.addTodo}
+          updateTodo= {this.updateTodo}/>
         <TodosList todoList={this.state.todos}
-          deleteTodo= {_id=>this.deleteTodo(_id)}
-          editTodo= {todo=>this.editTodo(todo)}/>
+          deleteTodo= {this.deleteTodo}
+          editTodo= {this.editTodo}/>
       </div>
     )
   }
