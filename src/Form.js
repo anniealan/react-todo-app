@@ -2,12 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Form = (props) => {
+
+  const addTodo = () => {
+    props.addTodo()
+  }
+  const updateTodo = () => {
+    props.updateTodo()
+  }
   const renderButton = () => {
     if (props.mode === "add") {
-      return <button type="button" onClick={() => props.addTodo()}>Add</button>
+      return <button type="button" onClick={addTodo}>Add</button>
 
     } else {
-      return <button type="button" onClick={() => props.updateTodo()}>Update</button>
+      return <button type="button" onClick={updateTodo}>Update</button>
     }
   }
   const renderError = () => {
@@ -15,15 +22,15 @@ const Form = (props) => {
       return <span> Title is required</span>
     }
   }
-  const handleChange = (title) => {
-    props.inputChange(title)
+  const handleChange = (e) => {
+    props.inputChange(e.target.value)
   }
 
   return (
     <div className="Form">
       <input type="text" id="title"
         value={props.title} placeholder="title"
-        onChange={(e) => handleChange(e.target.value)}/>
+        onChange={handleChange}/>
       {renderButton()}
       {renderError()}
     </div>
