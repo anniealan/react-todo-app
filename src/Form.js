@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Form = (props) => {
   const renderButton = () => {
@@ -27,7 +28,14 @@ const Form = (props) => {
       {renderError()}
     </div>
   )
-
 }
 
+Form.propTypes = {
+  error: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired,
+  addTodo: PropTypes.func.isRequired,
+  updateTodo: PropTypes.func.isRequired,
+  inputChange: PropTypes.func.isRequired
+}
 export default Form

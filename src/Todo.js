@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 const Todo = (props) => {
 
@@ -10,6 +11,11 @@ const Todo = (props) => {
     </div>
   )
 
+}
+
+Todo.propTypes = {
+  deleteTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired
 }
 
 export default Todo

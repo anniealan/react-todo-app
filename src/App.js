@@ -4,8 +4,8 @@ import TodosList from './TodosList'
 import update from 'immutability-helper'
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       todos: [],
       mode: 'add',
