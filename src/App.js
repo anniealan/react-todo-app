@@ -8,7 +8,6 @@ class App extends PureComponent {
     super()
     this.state = {
       todos: [],
-      mode: 'add',
       active_todo_id: null,
       title: "",
       error: false
@@ -52,7 +51,7 @@ class App extends PureComponent {
 
   }
   editTodo = ({_id, title}) => {
-    this.setState({active_todo_id: _id, mode: 'edit', title, error: false})
+    this.setState({active_todo_id: _id, title, error: false})
   }
   inputChange = (title) => {
     this.setState({title})
@@ -62,7 +61,7 @@ class App extends PureComponent {
       const index = this.state.todos.findIndex(todo => todo._id == this.state.active_todo_id)
       const updatedTodo = update(this.state.todos[index], {title: {$set: this.state.title}})
       const todos = update(this.state.todos, {$splice: [[index, 1, updatedTodo]]})
-      this.setState({error: false, title: "", todos, mode: 'add'})
+      this.setState({error: false, title: "", todos, active_todo_id: null})
     } else {
       this.setState({error: true})
     }
@@ -71,7 +70,7 @@ class App extends PureComponent {
   render() {
     return (
       <div>
-        <Form mode={this.state.mode} error={this.state.error}
+        <Form error={this.state.error}
           title={this.state.title}
           inputChange= {this.inputChange}
           active_todo_id={this.state.active_todo_id}

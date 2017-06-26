@@ -10,10 +10,13 @@ const Form = (props) => {
     props.updateTodo()
   }
   const renderButton = () => {
-    if (props.mode === "add") {
+    console.log(props.active_todo_id)
+    if (!props.active_todo_id) {
+      console.log("add")
       return <button type="button" onClick={addTodo}>Add</button>
 
     } else {
+      console.log("edit")
       return <button type="button" onClick={updateTodo}>Update</button>
     }
   }
